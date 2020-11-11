@@ -1,6 +1,8 @@
 # bot.py
 
 import martins_funcs as m
+import adams_functions as adam
+
 
 import os
 
@@ -16,27 +18,14 @@ m.chyba()
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
-
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
-    if '99' in message.content:
-        response = random.choice(brooklyn_99_quotes)
-        await message.channel.send(response)
-
-@client.event
-async def on_message(message):
     answer = m.f_martin(message,client)
     if answer != False:
     	await message.channel.send(answer)
+    else:
+        answer = adam.f_adam(message,client)
+        if answer != False:
+            await message.channel.send(answer)
+
 
 @client.event
 async def on_ready():
